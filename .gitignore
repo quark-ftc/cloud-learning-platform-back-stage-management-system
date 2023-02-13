@@ -17,6 +17,9 @@ coverage
 /cypress/videos/
 /cypress/screenshots/
 
+# 生产环境配置文件
+.env.production
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

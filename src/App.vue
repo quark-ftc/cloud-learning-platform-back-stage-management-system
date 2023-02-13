@@ -1,7 +1,14 @@
 <script setup></script>
 
 <template>
-  <div></div>
+  <div class="app-container">
+    <router-view></router-view>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .app-container {
+    width: 100%;
+    height: 100vh;
+  }
+</style>
