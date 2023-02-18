@@ -3,7 +3,7 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { useUserStore } from '@/stores/user.js';
-  import { ElMessage } from 'element-plus';
+  // import { ElMessage } from 'element-plus';
   import {
     // validateTwicePasswordSame
     validatePassword,
@@ -84,22 +84,19 @@
   const handleRegisterButtonClick = () => {
     registerFormRef.value.validate((isValid) => {
       if (!isValid) {
-        console.log(isValid);
         return;
       }
       buttonLoading.value = true;
       userStore
-        .register(registerForm.value)
-        .then(() => {
-          ElMessage.success('注册成功');
-          setTimeout(() => {
-            buttonLoading.value = false;
-            router.push('/login');
-          }, 3000);
-          // router.push('/login');
+        .userRegister(registerForm.value)
+        .then((message) => {
+          router.push('/login');
+          ElMessage.success(message);
         })
         .catch((error) => {
-          console.log(error.message);
+          ElMessage.error(error.message);
+        })
+        .finally(() => {
           buttonLoading.value = false;
         });
     });

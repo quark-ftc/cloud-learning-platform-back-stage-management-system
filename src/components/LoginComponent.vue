@@ -34,7 +34,6 @@
     password: [{ validator: validatePassword(), trigger: 'blur' }],
   });
 
-
   //登陆
   const router = useRouter();
   const buttonLoading = ref(false);
@@ -47,13 +46,15 @@
       }
       buttonLoading.value = true;
       userStore
-        .login(loginForm.value)
-        .then(() => {
-          buttonLoading.value = false;
+        .userLogin(loginForm.value)
+        .then((message) => {
+          ElMessage.success(message);
           router.push('/');
         })
         .catch((error) => {
-          console.log(error.message);
+          ElMessage.error(error.message);
+        })
+        .finally(() => {
           buttonLoading.value = false;
         });
     });

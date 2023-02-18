@@ -1,5 +1,6 @@
 import { useUserStore } from '@/stores/user.js';
 import router from '@/router/index.js';
+import { ElMessage } from 'element-plus';
 
 export function generateRouterGuard() {
   return function () {
@@ -7,11 +8,17 @@ export function generateRouterGuard() {
     const whiteList = ['/login', '/register'];
     const userStore = useUserStore();
     router.beforeEach((to, from, next) => {
-      if (userStore.token) {
+      if (userStore.getToken()) {
         //如何token已经存在，则无需登陆，直接跳转到首页
         if (to.path === '/login') {
           next('/');
         } else {
+          //如果用户信息不存在，则请求用户信息
+          if (JSON.stringify(userStore.getUserInfo() === '{}')) {
+            userStore.requestUserInfo().catch((error) => {
+              ElMessage.error(`获取用户信息失败: ${error.message}`);
+            });
+          }
           next();
         }
       } else {
