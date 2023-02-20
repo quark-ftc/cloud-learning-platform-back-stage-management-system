@@ -17,9 +17,13 @@ declare module '@vue/runtime-core' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSide: typeof import('element-plus/es')['ElSide']
+    ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     LoginComponent: typeof import('./components/LoginComponent.vue')['default']
     MainComponent: typeof import('./components/layout/MainComponent.vue')['default']
@@ -28,5 +32,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidebarComponent: typeof import('./components/layout/SidebarComponent.vue')['default']
+    TreeMenu: typeof import('./components/TreeMenu.vue')['default']
   }
 }

@@ -2,7 +2,8 @@
 
 <template>
   <div class="sidebar-component">
-    <h1>sidebar</h1>
+    <!-- <TreeMenu :tree-data="treeData" /> -->
+    Sidebar
   </div>
 </template>
 

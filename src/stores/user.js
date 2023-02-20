@@ -1,12 +1,20 @@
 import { defineStore } from 'pinia';
 import { setItem, getItem } from '@/utils/localStorage.js';
-import { login, register, getOne } from '@/apis';
+import {
+  login,
+  register,
+  requestRoles,
+  requestUserInfo,
+  requestMenu,
+} from '@/apis';
 import md5 from 'md5';
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
       token: getItem('token') ?? '',
-      useInfo: {},
+      userInfo: {},
+      menu: {},
+      roles: [],
     };
   },
   actions: {
@@ -17,12 +25,13 @@ export const useUserStore = defineStore('user', {
     getToken() {
       return this.token;
     },
-    setUserInfo(userInfo) {
-      this.userInfo = userInfo;
-    },
-    getUserInfo() {
-      return this.useInfo;
-    },
+    // setUserInfo(userInfo) {
+    //   console.log(userInfo);
+    //   this.userInfo = userInfo;
+    // },
+    // getUserInfo() {
+    //   return this.userInfo;
+    // },
     userLogin(loginForm) {
       const loginInfo = {
         username: loginForm.username,
@@ -55,17 +64,48 @@ export const useUserStore = defineStore('user', {
           reject(new Error(message));
         });
       });
-      // return register(registerInfo);
     },
-    requestUserInfo() {
+    getUserInfo() {
       return new Promise((resolve, reject) => {
-        getOne()
+        requestUserInfo()
           .then((responseData) => {
-            this.setUserInfo(responseData);
-            resolve(responseData);
+            const { status, message, data } = responseData;
+            if (status === 'success') {
+              this.userInfo = data.userInfo;
+              resolve();
+            }
+            reject(new Error(message));
           })
           .catch((error) => {
             reject(error);
+          });
+      });
+    },
+    getRoles() {
+      return new Promise((resolve, reject) => {
+        requestRoles().then((responseData) => {
+          const { status, message, data } = responseData;
+          if (status === 'success') {
+            this.roles = data.roles;
+            resolve();
+          }
+          reject(new Error(message));
+        });
+      });
+    },
+    getMenus() {
+      return new Promise((resolve, reject) => {
+        requestMenu()
+          .then((responseData) => {
+            const { status, message, data } = responseData;
+            if (status === 'success') {
+              this.menu = data.menu;
+              resolve(data.menu);
+            }
+            reject(new Error(message));
+          })
+          .catch((error) => {
+            reject(error.message);
           });
       });
     },

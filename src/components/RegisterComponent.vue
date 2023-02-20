@@ -1,14 +1,18 @@
 <script setup>
   import { Avatar, Key } from '@element-plus/icons-vue';
-  import { ref } from 'vue';
+  import { ref, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import { useUserStore } from '@/stores/user.js';
-  // import { ElMessage } from 'element-plus';
+
   import {
     // validateTwicePasswordSame
     validatePassword,
     validateUsername,
   } from '../rules';
+
+  const router = useRouter();
+  const userStore = useUserStore();
+
   const props = defineProps({
     formWidth: {
       type: String,
@@ -35,27 +39,37 @@
     adminSecretKey: '',
   });
 
-  const rolesList = [
-    {
-      value: 'teacher',
-      label: '教师',
-    },
-    {
-      value: 'student',
-      label: '学生',
-    },
-    {
-      value: 'admin',
-      label: '管理员',
-    },
-  ];
+  const rolesList = userStore.roles;
 
-  //TODO 使用 /src/rules/validateTwicePasswordSame代替此处定于的validateTwicePasswordSame
+  //侦听器的写法
+
+  // watch(
+  //   () => router.currentRoute.value.path,
+  //   async (newPath) => {
+  //     // ElMessage.error(newPath);
+  //     console.log(newPath);
+  //     if (newPath === '/register') {
+  //       userStore
+  //         .getRoles()
+  //         .then((roles) => {
+  //           rolesList.value = roles;
+  //           console.log(rolesList.value);
+  //         })
+  //         .catch((error) => {
+  //           ElMessage.error(error.message);
+  //         });
+  //     }
+  //   },
+  //   { immediate: true, deep: true },
+  // );
+
+  //TODO 使用 /src/rules/validateTwicePasswordSame代替,此处定于的validateTwicePasswordSame
   /**
    * 将验证规则直接定义在之处并不优雅，
    * 但是在使用/src/rules/validateTwicePasswordSame(registerForm.value.password)时，
    * 传入的registerForm.value.password永远是定义ref的初始值(空串)
    */
+
   const validateTwicePasswordSame = (rule, value, callback) => {
     if (value === '') {
       callback(new Error('请在此输入密码'));
@@ -65,6 +79,7 @@
       callback();
     }
   };
+
   const rules = ref({
     username: [{ validator: validateUsername(), trigger: 'blur' }],
     password: [{ validator: validatePassword(), trigger: 'blur' }],
@@ -77,8 +92,6 @@
   });
 
   //注册
-  const userStore = useUserStore();
-  const router = useRouter();
   const buttonLoading = ref(false);
   const registerFormRef = ref(null);
   const handleRegisterButtonClick = () => {
@@ -136,17 +149,16 @@
         <el-select v-model="registerForm.role" placeholder="请选择角色">
           <el-option
             v-model="registerForm.role"
-            v-for="{ label, value } of rolesList"
-            :value="value"
-            :label="label"
-            :key="value" />
+            v-for="(item, index) of rolesList"
+            :value="item"
+            :label="item"
+            :key="index" />
         </el-select>
       </el-form-item>
-
       <el-form-item>
         <el-input
           v-model="registerForm.adminSecretKey"
-          v-if="registerForm.role === 'admin'"
+          v-if="registerForm.role === '管理员'"
           placeholder="请输入管理员口令"
           :prefix-icon="Key" />
       </el-form-item>

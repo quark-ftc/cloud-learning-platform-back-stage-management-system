@@ -10,6 +10,16 @@ export const login = (loginInfo) => {
 };
 
 //获取用户信息
-export const getOne = () => {
-  return request.get(url);
+export const requestUserInfo = () => {
+  return request.get(URL + 'user_info');
+};
+
+//获取角色列表
+export const requestRoles = () => {
+  return request.get(URL + 'get_roles');
+};
+
+//获取菜单
+export const requestMenu = () => {
+  return request.get(URL + 'get_menu');
 };

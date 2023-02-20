@@ -1,6 +1,5 @@
 <script setup>
   import { Avatar, Key } from '@element-plus/icons-vue';
-  // import { ElMessage } from 'element-plus';
   import { ref } from 'vue';
   import { validatePassword, validateUsername } from '@/rules';
   import { useUserStore } from '@/stores/user.js';
