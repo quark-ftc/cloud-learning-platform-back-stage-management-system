@@ -17,7 +17,7 @@ export function generateRouterGuard() {
         }
 
         //如果菜单不存在，则请求菜单
-        if (JSON.stringify(userStore.menu) == '{}') {
+        if (JSON.stringify(userStore.menus) == '{}') {
           userStore.getMenus().catch((error) => {
             ElMessage.error(error.message);
           });

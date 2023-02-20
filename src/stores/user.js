@@ -5,7 +5,7 @@ import {
   register,
   requestRoles,
   requestUserInfo,
-  requestMenu,
+  requestMenus,
 } from '@/apis';
 import md5 from 'md5';
 export const useUserStore = defineStore('user', {
@@ -13,7 +13,7 @@ export const useUserStore = defineStore('user', {
     return {
       token: getItem('token') ?? '',
       userInfo: {},
-      menu: {},
+      menus: {},
       roles: [],
     };
   },
@@ -95,12 +95,12 @@ export const useUserStore = defineStore('user', {
     },
     getMenus() {
       return new Promise((resolve, reject) => {
-        requestMenu()
+        requestMenus()
           .then((responseData) => {
             const { status, message, data } = responseData;
             if (status === 'success') {
-              this.menu = data.menu;
-              resolve(data.menu);
+              this.menus = data.menus;
+              resolve(data.menus);
             }
             reject(new Error(message));
           })

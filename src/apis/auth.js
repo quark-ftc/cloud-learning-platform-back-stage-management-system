@@ -20,6 +20,6 @@ export const requestRoles = () => {
 };
 
 //获取菜单
-export const requestMenu = () => {
-  return request.get(URL + 'get_menu');
+export const requestMenus = () => {
+  return request.get(URL + 'get_menus');
 };
