@@ -7,10 +7,20 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthorityManage: typeof import('./components/main-components/admin/AuthorityManage.vue')['default']
+    BreadcrumbComponent: typeof import('./components/BreadcrumbComponent.vue')['default']
+    CourseManageComponent: typeof import('./components/main-components/admin/CourseManageComponent.vue')['default']
+    EchartComponent: typeof import('./components/echarts/EchartComponent.vue')['default']
     ElAaside: typeof import('element-plus/es')['ElAaside']
     ElAside: typeof import('element-plus/es')['ElAside']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDropdown: typeof import('element-plus/es')['ElDropdown']
+    ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
+    ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
     ElForm: typeof import('element-plus/es')['ElForm']
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
@@ -28,10 +38,16 @@ declare module '@vue/runtime-core' {
     LoginComponent: typeof import('./components/LoginComponent.vue')['default']
     MainComponent: typeof import('./components/layout/MainComponent.vue')['default']
     NavbarComponent: typeof import('./components/layout/NavbarComponent.vue')['default']
+    One: typeof import('./components/main-components/One.vue')['default']
+    OneComponent: typeof import('./components/main-components/OneComponent.vue')['default']
     RegisterComponent: typeof import('./components/RegisterComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidebarComponent: typeof import('./components/layout/SidebarComponent.vue')['default']
+    SystemManage: typeof import('./components/main-components/admin/SystemManage.vue')['default']
     TreeMenu: typeof import('./components/TreeMenu.vue')['default']
+    TwoComponent: typeof import('./components/main-components/TwoComponent.vue')['default']
+    UserManage: typeof import('./components/main-components/auth/UserManage.vue')['default']
+    UserManageComponent: typeof import('./components/main-components/admin/UserManageComponent.vue')['default']
   }
 }

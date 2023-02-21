@@ -1,19 +1,19 @@
-import { defineStore } from 'pinia';
-import { setItem, getItem } from '@/utils/localStorage.js';
 import {
   login,
   register,
+  requestMenus,
   requestRoles,
   requestUserInfo,
-  requestMenus,
 } from '@/apis';
+import { getItem, setItem } from '@/utils/localStorage.js';
 import md5 from 'md5';
+import { defineStore } from 'pinia';
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
       token: getItem('token') ?? '',
       userInfo: {},
-      menus: {},
+      menus: [],
       roles: [],
     };
   },
@@ -25,13 +25,6 @@ export const useUserStore = defineStore('user', {
     getToken() {
       return this.token;
     },
-    // setUserInfo(userInfo) {
-    //   console.log(userInfo);
-    //   this.userInfo = userInfo;
-    // },
-    // getUserInfo() {
-    //   return this.userInfo;
-    // },
     userLogin(loginForm) {
       const loginInfo = {
         username: loginForm.username,
@@ -72,7 +65,7 @@ export const useUserStore = defineStore('user', {
             const { status, message, data } = responseData;
             if (status === 'success') {
               this.userInfo = data.userInfo;
-              resolve();
+              resolve(data.userInfo);
             }
             reject(new Error(message));
           })
@@ -87,7 +80,7 @@ export const useUserStore = defineStore('user', {
           const { status, message, data } = responseData;
           if (status === 'success') {
             this.roles = data.roles;
-            resolve();
+            resolve(data.roles);
           }
           reject(new Error(message));
         });

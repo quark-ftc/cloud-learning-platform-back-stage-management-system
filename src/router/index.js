@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
 const publicRoute = [
   {
     path: '/login',
@@ -10,11 +9,18 @@ const publicRoute = [
     component: () => import('../views/RegisterView.vue'),
   },
   {
+    path: '/user-info',
+    component: () => import('@/views/UserInfoView.vue'),
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/errors/UnauthorizedView.vue'),
+  },
+  {
     path: '/',
     component: () => import('../views/AppMainView.vue'),
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: publicRoute,
