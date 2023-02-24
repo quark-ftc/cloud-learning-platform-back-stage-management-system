@@ -1,5 +1,5 @@
 <script setup>
-    const props = defineProps({
+  const props = defineProps({
     treeData: {
       type: Array,
     },

@@ -23,3 +23,8 @@ export const requestRoles = () => {
 export const requestMenus = () => {
   return request.get(URL + 'get-menus');
 };
+
+//获取用户分页列表
+export const requestUserPagingList = (data) => {
+  return request.post(URL + 'user-paging-list', data);
+};

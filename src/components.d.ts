@@ -17,6 +17,7 @@ declare module '@vue/runtime-core' {
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
@@ -31,9 +32,12 @@ declare module '@vue/runtime-core' {
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSide: typeof import('element-plus/es')['ElSide']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     LoginComponent: typeof import('./components/LoginComponent.vue')['default']
     MainComponent: typeof import('./components/layout/MainComponent.vue')['default']
@@ -48,6 +52,6 @@ declare module '@vue/runtime-core' {
     TreeMenu: typeof import('./components/TreeMenu.vue')['default']
     TwoComponent: typeof import('./components/main-components/TwoComponent.vue')['default']
     UserManage: typeof import('./components/main-components/auth/UserManage.vue')['default']
-    UserManageComponent: typeof import('./components/main-components/admin/UserManageComponent.vue')['default']
+    UserManageComponent: typeof import('./components/main-components/UserManageComponent.vue')['default']
   }
 }

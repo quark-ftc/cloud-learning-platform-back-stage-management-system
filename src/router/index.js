@@ -19,6 +19,13 @@ const publicRoute = [
   {
     path: '/',
     component: () => import('../views/AppMainView.vue'),
+    children: [
+      {
+        path: '/user',
+        component: () =>
+          import('@/components/main-components/UserManageComponent.vue'),
+      },
+    ],
   },
 ];
 const router = createRouter({
