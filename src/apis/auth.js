@@ -28,3 +28,11 @@ export const requestMenus = () => {
 export const requestUserPagingList = (data) => {
   return request.post(URL + 'user-paging-list', data);
 };
+
+//更新用户信息
+export const updateUserInfo = (attribute, value) => {
+  return request.post(URL + 'update-user-info', {
+    attribute,
+    value,
+  });
+};

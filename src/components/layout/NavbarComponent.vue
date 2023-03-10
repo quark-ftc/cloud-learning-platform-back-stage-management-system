@@ -14,6 +14,7 @@
     removeAllItem();
     router.push('/login');
   };
+  console.log(userStore.userInfo.avatar);
 </script>
 
 <template>
